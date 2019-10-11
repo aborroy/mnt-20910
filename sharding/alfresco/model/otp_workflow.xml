@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="otpw:otpWorkflowModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+    <!-- Optional meta-data about the model -->
+    <description>OTP Workflow Model</description>
+    <author>OTP Bank</author>
+    <version>1.0</version>
+
+    <imports>
+        <!-- Import Alfresco Dictionary Definitions -->
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+        <!-- Import Alfresco Content Domain Model Definitions -->
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+        <!-- Import Alfresco Workflow Model Definitions -->
+        <import uri="http://www.alfresco.org/model/bpm/1.0" prefix="bpm"/>
+    </imports>
+
+    <!-- Custom namespace for your domain -->
+    <namespaces>
+        <namespace uri="http://www.otpbank.com/alfekka/model/workflow/1.0" prefix="otpw"/>
+    </namespaces>
+
+    <!-- ===============================================================================================================
+        Constraints, Types, and Aspects go here...
+        -->
+
+    <types>
+        <type name="otpw:startTaskForm">
+            <properties>
+                <property name="otpw:approve">
+                    <title>Документ подтверждён</title>
+                    <type>d:boolean</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otpw:backward">
+                    <title>Вернуть на предыдущий этап</title>
+                    <type>d:boolean</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otpw:backToStart">
+                    <title>Вернуть на доработку</title>
+                    <type>d:boolean</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otpw:files">
+                    <title>id файлов</title>
+                    <type>d:any</type>
+                    <mandatory>false</mandatory>
+                    <multiple>true</multiple>
+                </property>
+                <property name="otpw:agreement">
+                    <title>id договора</title>
+                    <type>d:any</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otpw:company">
+                    <title>id компании</title>
+                    <type>d:any</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otpw:contact">
+                    <title>id контакта физ-лица</title>
+                    <type>d:any</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otpw:operation">
+                    <title>id операции</title>
+                    <type>d:any</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otpw:commentary">
+                    <title>Комментарий</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otpw:backOfficeWorkflowAssignees">
+                    <title>Справочник назначаемых</title>
+                    <type>d:any</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </type>
+    </types>
+</model>
+

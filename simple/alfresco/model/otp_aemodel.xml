@@ -1,0 +1,2108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="otp:aemodel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+
+    <!-- Optional meta-data about the model -->
+    <description>Credit Documents Model</description>
+    <author>Mr. Nobody</author>
+    <version>1.0</version>
+
+    <imports>
+        <!-- Import Alfresco Dictionary Definitions -->
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+        <!-- Import Alfresco Content Domain Model Definitions -->
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+        <!-- Import Alfresco System Model Definitions -->
+        <import uri="http://www.alfresco.org/model/system/1.0" prefix="sys"/>
+    </imports>
+
+    <!-- Custom namespace for your domain -->
+    <namespaces>
+        <namespace uri="http://www.otpbank.com/alfekka/model/1.0" prefix="otp"/>
+    </namespaces>
+
+    <!-- ===============================================================================================================
+        Constraints, Types, and Aspects go here...
+        -->
+    <types>
+        <type name="otp:document">
+            <title>Документ</title>
+            <parent>cm:content</parent>
+
+            <properties>
+                <property name="otp:processId">
+                    <title>Id процесса</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:originalPresent">
+                    <title>Присутствие оригинала</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:sourceDocId">
+                    <title>ID документа</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:docType">
+                    <title>Тип документа</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:docBarcode">
+                    <title>Штрихкод</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:fileName">
+                    <title>Имя файла</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:fileType">
+                    <title>Тип файла</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:employeeFullName">
+                    <title>ФИО кто создал документ</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:employeeLoginSs">
+                    <title>Логин кто создал документ</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:departmentIdSs">
+                    <title>ID подразделения системы-источника</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:departmentIdSap">
+                    <title>ID подразделения SAP</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:departmentIdPath">
+                    <title>Код подразделения Lotus</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:deleted">
+                    <title>Признак удаления</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:docInboxDt">
+                    <title>Дата добавления в короб</title>
+                    <type>d:datetime</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:docInboxEmployeeId">
+                    <title>ID пользователя, добавившего документ в короб</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:docInboxEmployeeNm">
+                    <title>Имя пользователя добавившего документ в короб</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:docMessageId">
+                    <title>ID-запроса в котором получены данные по документу</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:backOfficeDocumentPlace">
+                    <title>Место хранения документа</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="false"/>
+                </property>
+            </properties>
+            <associations>
+                <association name="otp:documentBackOfficeDocumentForm">
+                    <title>Вид документа для Бэк-Офиса</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:backOfficeDocumentForm</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+
+
+                <association name="otp:documentNew">
+                    <title>Доработавший документ</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>cm:person</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+
+                <association name="otp:documentApproval">
+                    <title>Утвердивший документ</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>cm:person</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:documentExecution">
+                    <title>Исполнивший документ</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>cm:person</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:documentAgreed">
+                    <title>Согласовавший документ</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>cm:person</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:documentStarter">
+                    <title>Создавший документ</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>cm:person</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+            </associations>
+        </type>
+
+        <type name="otp:simpleDocument">
+            <title>Простой документ</title>
+            <parent>cm:content</parent>
+
+            <properties>
+                <property name="otp:simpleDocSiebelId">
+                    <title>Внешний идентификатор из Siebel</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:simpleDocBarcode">
+                    <title>Штрихкод</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:simpleDocFileName">
+                    <title>Имя файла</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="false">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:simpleDocFileType">
+                    <title>Тип файла</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="false">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:simpleDocDeleted">
+                    <title>Признак удаления</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="false"/>
+                </property>
+                <property name="otp:simpleDocVersion">
+                    <title>Признак удаления</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:simpleDocSaperionId">
+                    <title>Признак удаления</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+            </properties>
+        </type>
+
+        <type name="otp:contactRelationship">
+            <title>Contact Relationship</title>
+            <parent>cm:cmobject</parent>
+            <properties>
+                <property name="otp:sourceRelationId">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:relSourceContactId">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:relSourceApplicationId">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:relSourceAgreementId">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:contactRole">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:isDeleted">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+            </properties>
+        </type>
+
+        <type name="otp:contact">
+            <title>Контакт</title>
+            <parent>cm:cmobject</parent>
+
+            <properties>
+
+                <property name="otp:sourceContactId">
+                    <title>ID контакта</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+
+                <property name="otp:contactType">
+                    <title>Тип контакта</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:contFirstName">
+                    <title>Имя</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:contMidName">
+                    <title>Отчество</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:contLastName">
+                    <title>Фамилия</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:birthDate">
+                    <title>Дата рождения</title>
+                    <type>d:date</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:birthCountry">
+                    <title>Страна рождения</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:birthPlace">
+                    <title>Место рождения</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:gender">
+                    <title>Пол</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:vipFlg">
+                    <title>Признак VIP</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:dulType">
+                    <title>Тип ДУЛ</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:dulSerial">
+                    <title>Серия ДУЛ</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:dulNumber">
+                    <title>Номер ДУЛ</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:dulWhom">
+                    <title>Кем выдан ДУЛ</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:dulDate">
+                    <title>Дата выдачи ДУЛ</title>
+                    <type>d:date</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:dulIssueCode">
+                    <title>Код ДУЛ</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:contactInn">
+                    <title>ИНН</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:contactPensNum">
+                    <title>СНИЛС</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:contactUlName">
+                    <title>Имя юридического лица</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:contactUlAddress">
+                    <title>Адрес юридического лица</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:typeContact">
+                    <title>Тип контакта - для ЦФТ</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:initiator">
+                    <title>Является ли клиент инициатором операции в процессе ЦФТ</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+            </properties>
+
+            <associations>
+                <association name="otp:contactOperations">
+                    <title>Контакт операции</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:operation</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:contactDocuments">
+                    <title>Документ контакта</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:document</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:guarantorAgreements">
+                    <title>Поручитель по договору</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:agreement</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:borrowerAgreements">
+                    <title>Заёмщик по договору</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:agreement</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:coborrowerAgreements">
+                    <title>Созаёмщик по договору</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:agreement</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:wcoborrowerAgreements">
+                    <title>Созаёмщик с поручительством по договору</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:agreement</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:heirAgreements">
+                    <title>Наследник по договору</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:agreement</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:confidantAgreements">
+                    <title>Доверенное лицо по договору</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:agreement</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:guarantorApplications">
+                    <title>Поручитель по заявке</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:application</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:borrowerApplications">
+                    <title>Заёмщик по заявке</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:application</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:coborrowerApplications">
+                    <title>Созаёмщик по заявке</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:application</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:wcoborrowerApplications">
+                    <title>Созаёмщик с поручительством по заявке</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:application</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+            </associations>
+        </type>
+
+        <type name="otp:company">
+            <title>Юридическое лицо</title>
+            <parent>cm:cmobject</parent>
+            <properties>
+                <property name="otp:companyEaId">
+                    <title>Id юридического лица Alfreso</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+
+                <property name="otp:companySourceAbsId">
+                    <title>Id ЮЛ в АБС</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+
+                <property name="otp:companySourceId">
+                    <title>Id ЮЛ в системе-источнике</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+
+                <property name="otp:companySourceInn">
+                    <title>ИНН ЮЛ</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:companySourceKpp">
+                    <title>КПП ЮЛ</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:companySourceName">
+                    <title>Название компании</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:companySourceOgrn">
+                    <title>Название компании</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+            </properties>
+            <associations>
+                <association name="otp:companyDocuments">
+                    <title>Документы компании</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:document</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:companyAgreements">
+                    <title>Договоры ЮЛ</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:agreement</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:companyOperations">
+                    <title>Операции компании</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:operation</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+            </associations>
+        </type>
+
+        <type name="otp:operation">
+            <title>Операция</title>
+            <parent>cm:cmobject</parent>
+            <properties>
+                <property name="otp:sourceOperationId">
+                    <title>ID операции</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:operationType">
+                    <title>Тип операции</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:operationName">
+                    <title>Название операции</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:operationLine">
+                    <title>Продуктовая линия</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:operationDate">
+                    <title>Дата операции</title>
+                    <type>d:datetime</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+            </properties>
+            <associations>
+                <association name="otp:operationContact">
+                    <title>Контакт операции</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:contact</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:operationDocuments">
+                    <title>Документ по операции</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:document</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:operationAgreements">
+                    <title>Договор операции</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:agreement</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+            </associations>
+        </type>
+
+        <type name="otp:agreement">
+            <title>Договор</title>
+            <parent>cm:cmobject</parent>
+            <properties>
+                <property name="otp:sourceAgreementId">
+                    <title>ID договора</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:sourceAgreementNum">
+                    <title>Номер договора</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:agrProductId">
+                    <title>ID продукта договора</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:productName">
+                    <title>Имя продукта</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:agreementOpenDate">
+                    <title>Дата открытия договора</title>
+                    <type>d:date</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:agreementDueDate">
+                    <title>Срок действия договора</title>
+                    <type>d:date</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:agreementStatus">
+                    <title>Статус договора</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:bankMfoStatus">
+                    <title>Принадлежность договора банку/МФО</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+            </properties>
+            <associations>
+                <association name="otp:agreementContacts">
+                    <title>Договор контакта</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:contact</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:agreementDocuments">
+                    <title>Документ по договору</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:document</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+            </associations>
+        </type>
+
+        <type name="otp:application">
+            <title>Заявка</title>
+            <parent>cm:cmobject</parent>
+            <properties>
+                <property name="otp:sourceApplicationId">
+                    <title>ID заявки</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:applicationDate">
+                    <title>Дата заведения заявки</title>
+                    <type>d:datetime</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:appProductId">
+                    <title>ID продукта по заявке</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:appProductLine">
+                    <title>Продуктовая линия заявки</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:cardProject">
+                    <title>Карточный проект</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:appProductName">
+                    <title>Название продукта</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:applicationStatus">
+                    <title>Статус заявки</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+
+            </properties>
+            <associations>
+                <association name="otp:applicationContacts">
+                    <title>Заявка контакта</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:contact</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:applicationDocuments">
+                    <title>Документ по заявке</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:document</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:applicationAgreements">
+                    <title>Договора по заявке</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:agreement</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+            </associations>
+        </type>
+
+        <type name="otp:documentFolder">
+            <title>Логистическая папка</title>
+            <parent>cm:folder</parent>
+            <properties>
+                <property name="otp:folderDepartmentName">
+                    <title>Подразделение</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:folderBarcode">
+                    <title>Штрихкод</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:employeeIdCreate">
+                    <title>Логин пользователя, который создал папку</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:employeeFioCreate">
+                    <title>ФИО пользователя, создавшего папку</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:folderCreateDt">
+                    <title>Дата создания логистической папки</title>
+                    <type>d:datetime</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+            </properties>
+        </type>
+
+        <type name="otp:archiveBox">
+            <title>Короб</title>
+            <parent>cm:folder</parent>
+            <properties>
+                <property name="otp:archiveBoxDepartmentName">
+                    <title>Подразделение</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:archiveBoxBarcode">
+                    <title>Штрихкод</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:boxCreateDt">
+                    <title>Дата создания</title>
+                    <type>d:datetime</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:boxCreateEmployeeId">
+                    <title>Логин пользователя, который создал короб</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:boxCreateEmployeeFullNm">
+                    <title>ФИО пользователя, создавшего бокс</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:boxCloseDt">
+                    <title>Дата закрытия</title>
+                    <type>d:datetime</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:boxStatus">
+                    <title>Статус</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:archiveEmployeeId">
+                    <title>Отправил в архив</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:archiveEmployeeFullNm">
+                    <title>ФИО, кто отправил в архив</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:isActive">
+                    <title>Активен</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:department">
+                    <title>Код подразделения</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:archivePlace">
+                    <title>Место архивного хранения бокса</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+            </properties>
+        </type>
+
+        <type name="otp:requiredLoadingBoxDocuments">
+            <title>Справочник документов по типам, которые необходимо автоматически загружать в короб</title>
+            <parent>cm:cmobject</parent>
+            <properties>
+                <property name="otp:reqLoadBoxDocumentType">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:reqLoadBoxIsRequired">
+                    <title>Активен</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+            </properties>
+        </type>
+
+        <type name="otp:referenceRequiredDocuments">
+            <title>Справочник обязательных документов для заявки на определенном этапе</title>
+            <parent>cm:cmobject</parent>
+            <properties>
+                <property name="otp:reqDocProductId">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:reqDocProductLine">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+
+                <property name="otp:reqDocProductName">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+
+                <property name="otp:reqDocCardProject">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+
+                <property name="otp:reqDocOperationName">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+
+                <property name="otp:reqDocAgreementBankMfoRef">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+
+                <property name="otp:reqDocApplicationStatus">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+
+                <property name="otp:reqDocAgreementStatusRef">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+
+                <property name="otp:reqDocDocumentType">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+            </properties>
+        </type>
+
+        <type name="otp:constraintsReferences">
+            <title>References From Db</title>
+            <parent>cm:cmobject</parent>
+            <properties>
+                <property name="otp:docTypeRef">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:dulTypeRef">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:contactTypeRef">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:applicationTypeRef">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:docTitleTypeRef">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:applicationStatusTypeRef">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:agreementStatusTypeRef">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:productNameRef">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="otp:operationTypeNameRef">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+            </properties>
+        </type>
+
+        <type name="otp:backOfficeDocumentForm">
+            <title>Справочник видов документов для Бэк-Офиса</title>
+            <parent>cm:cmobject</parent>
+            <properties>
+
+                <property name="otp:backOfficeDocument">
+                    <title>Название вида документа</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+
+                <property name="otp:backOfficeFormParentProcessName">
+                    <title>Процесс</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+
+                <property name="otp:backOfficeProcess">
+                    <title>Процесс</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:backOfficeOperation">
+                    <title>Операция</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:backOfficeDocTypeOrigin">
+                    <title>Тип оригинала документа("Бумажный" или "Электронный")</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="false"/>
+                </property>
+                <property name="otp:backOfficeSignRequired">
+                    <title>Требуется функционал подписания("Да" или "Нет")</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="false"/>
+                </property>
+                <property name="otp:backOfficeAttachRequired">
+                    <title>Требуется прикрепление файла("Да" или "Нет")</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="false"/>
+                </property>
+                <property name="otp:backOfficeServObject">
+                    <title>Объект хранения</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="false"/>
+                </property>
+                <property name="otp:backOfficeServCase">
+                    <title>Способ хранения</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="false"/>
+                </property>
+                <property name="otp:backOfficeDocumentFormPlace">
+                    <title>Место хранения оригинала документа</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="false"/>
+                </property>
+                <property name="otp:backOfficeWorkflow">
+                    <title>Процесс для вида документа</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:backOfficeIsEnhancedFields">
+                    <title>Расширенная карточка документа("Да" или "Нет")</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="false"/>
+                </property>
+                <property name="otp:backOfficeDocumentAssignees">
+                    <title>wf_NodeRef</title>
+                    <type>d:text</type>
+                </property>
+                <property name="otp:backOfficeEntityRequired">
+                    <title>На какой сущности документ обязателен (Операция, Договор или Компания)</title>
+                    <type>d:text</type>
+                </property>
+                <property name="otp:backOfficeIsOriginalPresentBlock">
+                    <title>Признак наличия оригинала документа</title>
+                    <type>d:text</type>
+                </property>
+            </properties>
+            <associations>
+                <association name="otp:backOfficeDocumentFormProcess">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:backOfficeProcessType</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:backOfficeDocumentFormCompany">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:company</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:backOfficeDocumentFormAgreement">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:agreement</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:backOfficeDocumentFormPseudoOperation">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:backOfficePseudoOperation</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+            </associations>
+        </type>
+
+        <type name="otp:backOfficeAgreementType">
+            <title>Справочник типов договоров Бэк-Офиса</title>
+            <parent>cm:cmobject</parent>
+        </type>
+
+        <type name="otp:backOfficeOperationType">
+            <title>Справочник операций Бэк-Офиса</title>
+            <parent>cm:cmobject</parent>
+        </type>
+
+        <type name="otp:backOfficeProcessListType">
+            <title>Справочник уникальных процессов Бэк-Офиса</title>
+            <parent>cm:cmobject</parent>
+        </type>
+
+        <type name="otp:backOfficeProcessType">
+            <title>Справочник процессов Бэк-Офиса</title>
+            <parent>cm:cmobject</parent>
+            <properties>
+                <property name="otp:backOfficeProcessName">
+                    <title>Имя процесса</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+            </properties>
+            <associations>
+                <association name="otp:backOfficeParentProcess">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:backOfficeAgreementType</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:backOfficeProcessOperation">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:backOfficeOperationType</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:backOfficeProcessListAssociation">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:backOfficeProcessListType</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+            </associations>
+        </type>
+        <type name="otp:backOfficeServObjectType">
+            <title>Справочник объектов хранения Бэк-Офиса</title>
+            <parent>cm:cmobject</parent>
+        </type>
+        <type name="otp:backOfficeServCaseType">
+            <title>Справочник способов хранения Бэк-Офиса</title>
+            <parent>cm:cmobject</parent>
+        </type>
+        <type name="otp:backOfficeDocumentOriginType">
+            <title>Справочник типов оригиналов документов Бэк-Офиса</title>
+            <parent>cm:cmobject</parent>
+        </type>
+        <type name="otp:backOfficeDocumentPlaceType">
+            <title>Местонахождение бумажного оригинала документа</title>
+            <parent>cm:cmobject</parent>
+        </type>
+        <type name="otp:backOfficeWorkflowAssignees">
+            <title>Справочник назначаемых</title>
+            <parent>cm:cmobject</parent>
+            <properties>
+                <property name="otp:backOfficeWorkflowAssigneesName">
+                    <title>Имя параметра назначаемых</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="false"/>
+                </property>
+                <property name="otp:taskOrder">
+                    <title>Порядок тасков</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <multiple>true</multiple>
+                </property>
+            </properties>
+            <associations>
+
+                <association name="otp:mailAssignees">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>cm:person</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:mailGroupAssignees">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>cm:authorityContainer</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+
+                <association name="otp:newAssignees">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>cm:person</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:newGroupAssignees">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>cm:authorityContainer</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+
+
+                <association name="otp:viewAssignees">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>cm:person</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:viewGroupAssignees">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>cm:authorityContainer</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+
+
+                <association name="otp:approvalAssignees">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>cm:person</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:approvalGroupAssignees">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>cm:authorityContainer</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+
+                <association name="otp:executionAssignees">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>cm:person</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:executionGroupAssignees">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>cm:authorityContainer</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+
+                <association name="otp:agreedAssignees">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>cm:person</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:agreedGroupAssignees">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>cm:authorityContainer</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+            </associations>
+        </type>
+        <type name="otp:backOfficePseudoOperation">
+            <title>Псевдо-операция бэкофиса</title>
+            <parent>cm:cmobject</parent>
+            <properties>
+                <property name="otp:pseudoOperation">
+                    <title>Имя операции из backOfficeOperationType</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:pseudoParentProcess">
+                    <title>Имя главного процесса</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:pseudoProcess">
+                    <title>Процесс</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:pseudoOperationDate">
+                    <title>Дата операции</title>
+                    <type>d:datetime</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+            </properties>
+            <associations>
+                <association name="otp:backOfficeOperationDocuments">
+                    <title>Операции ЮЛ</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:document</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:operationCompanies">
+                    <title>Операции компаний ЮЛ</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:company</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:backOfficeOperationAgreement">
+                    <title>Операция бэкофиса по договору</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:agreement</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+                <association name="otp:backOfficeOperationContacts">
+                    <title>Операция бэкофиса по клиенту</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:contact</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+            </associations>
+        </type>
+
+        <type name="otp:backOfficeUserSearchCache">
+            <title>Кэш поиска видов документов по пользователю</title>
+            <parent>cm:cmobject</parent>
+            <properties>
+                <property name="otp:cacheUserLogin">
+                    <title>Поиск начиная с даты</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:cacheStartDate">
+                    <title>Поиск начиная с даты</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:cacheEndDate">
+                    <title>Поиск оканчивается по дату</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+                <property name="otp:cacheInformation">
+                    <title>Кэш в формате JSON</title>
+                    <type>d:any</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+            </properties>
+            <associations>
+                <association name="otp:backOfficeCacheDocumentFormsAssociation">
+                    <title>Виды документов, настроенные в поиске</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>otp:backOfficeDocumentForm</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+            </associations>
+        </type>
+    </types>
+
+    <aspects>
+        <aspect name="otp:lastUpdatable">
+            <title>Время обновления данных</title>
+            <properties>
+                <property name="otp:lastUpdate">
+                    <title>Последнее обновление</title>
+                    <type>d:datetime</type>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="otp:sourceable">
+            <title>Система источник</title>
+            <properties>
+                <property name="otp:source">
+                    <title>Система источник</title>
+                    <type>d:text</type>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>true</tokenised>
+                    </index>
+                </property>
+            </properties>
+        </aspect>
+
+    </aspects>
+
+</model>
