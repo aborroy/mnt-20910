@@ -1,8 +1,6 @@
 package org.alfresco.cmis.assoc.service;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.math.BigInteger;
 import java.util.HashMap;
@@ -32,9 +30,11 @@ import org.apache.chemistry.opencmis.commons.enums.BindingType;
 import org.apache.chemistry.opencmis.commons.enums.RelationshipDirection;
 import org.apache.chemistry.opencmis.commons.enums.VersioningState;
 import org.apache.chemistry.opencmis.commons.impl.dataobjects.ContentStreamImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ResourceUtils;
 
 /**
  * CMIS Service to handle operations within the session.
@@ -56,6 +56,9 @@ public class CmisService
 
     // CMIS living session
     private Session session;
+    
+    @Autowired
+    ResourceLoader resourceLoader;
 
     @PostConstruct
     public void init()
@@ -111,9 +114,9 @@ public class CmisService
         properties.put(PropertyIds.OBJECT_TYPE_ID, "D:otp:document");
         properties.put(PropertyIds.NAME, documentName + documentExt);
 
-        File contentFile = ResourceUtils.getFile("classpath:in-the-beggining-command.txt");
-        ContentStream contentStream = new ContentStreamImpl(documentName + documentExt, BigInteger.valueOf(contentFile.length()),
-                "text/plain", new FileInputStream(contentFile));
+        Resource contentFile = resourceLoader.getResource("classpath:cryptonomicon.txt");
+        ContentStream contentStream = new ContentStreamImpl(documentName + documentExt, null,
+                "text/plain", contentFile.getInputStream());
 
         Document doc = folder.createDocument(properties, contentStream, VersioningState.MAJOR);
         
