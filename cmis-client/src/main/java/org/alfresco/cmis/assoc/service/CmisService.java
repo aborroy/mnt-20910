@@ -14,6 +14,7 @@ import javax.annotation.PostConstruct;
 import org.apache.chemistry.opencmis.client.api.CmisObject;
 import org.apache.chemistry.opencmis.client.api.Document;
 import org.apache.chemistry.opencmis.client.api.Folder;
+import org.apache.chemistry.opencmis.client.api.Item;
 import org.apache.chemistry.opencmis.client.api.ItemIterable;
 import org.apache.chemistry.opencmis.client.api.ObjectId;
 import org.apache.chemistry.opencmis.client.api.ObjectType;
@@ -103,68 +104,61 @@ public class CmisService
         return folder.createDocument(properties, contentStream, VersioningState.MAJOR);
     }
 
-    public Document createDocumentSampleContent(Folder folder, String documentName) throws Exception
+    public Document createDocumentSampleContent(Folder folder, String documentName, String documentExt) throws Exception
     {
 
         Map<String, Object> properties = new HashMap<String, Object>();
-        properties.put(PropertyIds.OBJECT_TYPE_ID, "cmis:document");
-        properties.put(PropertyIds.NAME, documentName);
+        properties.put(PropertyIds.OBJECT_TYPE_ID, "D:otp:document");
+        properties.put(PropertyIds.NAME, documentName + documentExt);
 
-        File contentFile = ResourceUtils.getFile("classpath:cryptonomicon.txt");
-        ContentStream contentStream = new ContentStreamImpl(documentName, BigInteger.valueOf(contentFile.length()),
+        File contentFile = ResourceUtils.getFile("classpath:in-the-beggining-command.txt");
+        ContentStream contentStream = new ContentStreamImpl(documentName + documentExt, BigInteger.valueOf(contentFile.length()),
                 "text/plain", new FileInputStream(contentFile));
 
         Document doc = folder.createDocument(properties, contentStream, VersioningState.MAJOR);
         
-        addAspect(doc, "P:cm:titled", 
-                "P:cm:projectsummary", 
-                "P:cm:dublincore",
-                "P:cm:summarizable",
-                "P:cm:geographic",
-                "P:exif:exif",
-                "P:audio:audio");
+        addAspect(doc, "P:cm:titled");
         
         properties = new HashMap<>();
         properties.put("cm:title", "Title");
         properties.put("cm:description", "Description");
-        properties.put("cm:summaryWebscript", "Summary WebScript");
-        properties.put("cm:publisher", "Publisher");
-        properties.put("cm:contributor", "Contributor");
-        properties.put("cm:type", "Type");
-        properties.put("cm:identifier", "Identifier");
-        properties.put("cm:dcsource", "DC Source");
-        properties.put("cm:coverage", "Coverage");
-        properties.put("cm:rights", "Rights");
-        properties.put("cm:subject", "Subject");
-        properties.put("cm:summary", "Summary");
-        properties.put("cm:latitude", 0.0);
-        properties.put("cm:longitude", 0.0);
-        properties.put("exif:pixelXDimension", 0);
-        properties.put("exif:pixelYDimension", 0);
-        properties.put("exif:exposureTime", 0.0);
-        properties.put("exif:fNumber", 0.0);
-        properties.put("exif:focalLength", 0.0);
-        properties.put("exif:isoSpeedRatings", "1000");
-        properties.put("exif:manufacturer", "Manufacturer");
-        properties.put("exif:model", "Model");
-        properties.put("exif:software", "Software");
-        properties.put("exif:orientation", 1);
-        properties.put("exif:xResolution", 0.0);
-        properties.put("exif:yResolution", 0.0);
-        properties.put("exif:resolutionUnit", "Resolution Unit");
-        properties.put("audio:album", "Album");
-        properties.put("audio:artist", "Artist");
-        properties.put("audio:composer", "Composer");
-        properties.put("audio:engineer", "Engineer");
-        properties.put("audio:genre", "Genre");
-        properties.put("audio:trackNumber", 0);
-        properties.put("audio:sampleRate", 0);
-        properties.put("audio:sampleType", "Sample Type");
-        properties.put("audio:channelType", "Channel Type");
-        properties.put("audio:compressor", "Compressor");
+        properties.put("otp:processId", "processId");
+        properties.put("otp:originalPresent", "originalPresent");
+        properties.put("otp:sourceDocId", "sourceDocId");
+        properties.put("otp:docType", "docType");
+        properties.put("otp:docBarcode", "docBarcode");
+        properties.put("otp:fileName", "fileName");
+        properties.put("otp:fileType", "fileType");
+        properties.put("otp:employeeFullName", "employeeFullName");
+        properties.put("otp:employeeLoginSs", "employeeLoginSs");
+        properties.put("otp:departmentIdSs", "departmentIdSs");
+        properties.put("otp:departmentIdSap", "departmentIdSap");
+        properties.put("otp:departmentIdPath", "departmentIdPath");
+        properties.put("otp:deleted", "deleted");
+        properties.put("otp:docInboxEmployeeId", "docInboxEmployeeId");
+        properties.put("otp:docInboxEmployeeNm", "docInboxEmployeeNm");
+        properties.put("otp:docMessageId", "docMessageId");
         updateProperties(doc, properties);
         
         return doc;
+        
+    }
+    
+    public Item createSampleItem(Folder folder, String itemName) throws Exception 
+    {
+        
+        Map<String, Object> properties = new HashMap<String, Object>();
+        properties.put(PropertyIds.OBJECT_TYPE_ID, "I:otp:backOfficeDocumentForm");
+        properties.put(PropertyIds.NAME, itemName);
+        
+        properties.put("otp:backOfficeDocument", "backOfficeDocument");
+        properties.put("otp:backOfficeFormParentProcessName", "backOfficeFormParentProcessName");
+        properties.put("otp:backOfficeProcess", "backOfficeProcess");
+        properties.put("otp:backOfficeOperation", "backOfficeOperation");
+        properties.put("otp:backOfficeWorkflow", "backOfficeWorkflow");
+        
+        return folder.createItem(properties);
+        
     }
     
     public ObjectId createRelationship(CmisObject sourceObject, CmisObject targetObject, String relationshipName)
@@ -214,6 +208,20 @@ public class CmisService
     {
         return session.query(query, false);
     }
+    
+    public CmisObject getAdminUser()
+    {
+    
+        ItemIterable<QueryResult> persons = query("SELECT cmis:objectId FROM cm:person WHERE cm:userName = 'admin'");
+        for (QueryResult person : persons)
+        {
+            return session.getObject(person.getPropertyValueById("cmis:objectId").toString());
+        }
+        
+        return null;
+        
+    }
+
 
     public void remove(CmisObject object)
     {
