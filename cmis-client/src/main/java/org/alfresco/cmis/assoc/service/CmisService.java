@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import org.alfresco.cmis.assoc.util.WordGenerator;
 import org.apache.chemistry.opencmis.client.api.CmisObject;
 import org.apache.chemistry.opencmis.client.api.Document;
 import org.apache.chemistry.opencmis.client.api.Folder;
@@ -45,7 +46,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class CmisService
 {
-
     // Set values from "application.properties" file
     @Value("${alfresco.repository.url}")
     String alfrescoUrl;
@@ -59,6 +59,9 @@ public class CmisService
     
     @Autowired
     ResourceLoader resourceLoader;
+    
+    @Autowired
+    WordGenerator wordGenerator;
 
     @PostConstruct
     public void init()
@@ -114,7 +117,7 @@ public class CmisService
         properties.put(PropertyIds.OBJECT_TYPE_ID, "D:otp:document");
         properties.put(PropertyIds.NAME, documentName + documentExt);
 
-        Resource contentFile = resourceLoader.getResource("classpath:cryptonomicon.txt");
+        Resource contentFile = resourceLoader.getResource("classpath:in-the-beggining-command.txt");
         ContentStream contentStream = new ContentStreamImpl(documentName + documentExt, null,
                 "text/plain", contentFile.getInputStream());
 
@@ -123,24 +126,25 @@ public class CmisService
         addAspect(doc, "P:cm:titled");
         
         properties = new HashMap<>();
-        properties.put("cm:title", "Title");
-        properties.put("cm:description", "Description");
-        properties.put("otp:processId", "processId");
-        properties.put("otp:originalPresent", "originalPresent");
-        properties.put("otp:sourceDocId", "sourceDocId");
-        properties.put("otp:docType", "docType");
-        properties.put("otp:docBarcode", "docBarcode");
-        properties.put("otp:fileName", "fileName");
-        properties.put("otp:fileType", "fileType");
-        properties.put("otp:employeeFullName", "employeeFullName");
-        properties.put("otp:employeeLoginSs", "employeeLoginSs");
-        properties.put("otp:departmentIdSs", "departmentIdSs");
-        properties.put("otp:departmentIdSap", "departmentIdSap");
-        properties.put("otp:departmentIdPath", "departmentIdPath");
-        properties.put("otp:deleted", "deleted");
-        properties.put("otp:docInboxEmployeeId", "docInboxEmployeeId");
-        properties.put("otp:docInboxEmployeeNm", "docInboxEmployeeNm");
-        properties.put("otp:docMessageId", "docMessageId");
+        properties.put("cm:title", wordGenerator.getSentence());
+        properties.put("cm:description", wordGenerator.getSentence());
+        properties.put("otp:processId", wordGenerator.getWord());
+        properties.put("otp:originalPresent", wordGenerator.getWord());
+        properties.put("otp:sourceDocId", wordGenerator.getWord());
+        properties.put("otp:docType", wordGenerator.getWord());
+        properties.put("otp:docBarcode", wordGenerator.getWord());
+        properties.put("otp:fileName", wordGenerator.getWord());
+        properties.put("otp:fileType", wordGenerator.getWord());
+        properties.put("otp:employeeFullName", wordGenerator.getSentence());
+        properties.put("otp:employeeLoginSs", wordGenerator.getSentence());
+        properties.put("otp:departmentIdSs", wordGenerator.getSentence());
+        properties.put("otp:departmentIdSap", wordGenerator.getSentence());
+        properties.put("otp:departmentIdPath", wordGenerator.getSentence());
+        properties.put("otp:deleted", wordGenerator.getWord());
+        properties.put("otp:docInboxEmployeeId", wordGenerator.getWord());
+        properties.put("otp:docInboxEmployeeNm", wordGenerator.getSentence());
+        properties.put("otp:docMessageId", wordGenerator.getSentence());
+        
         updateProperties(doc, properties);
         
         return doc;
@@ -240,5 +244,5 @@ public class CmisService
         }
         session.delete(object);
     }
-
+    
 }
